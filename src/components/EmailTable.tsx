@@ -20,6 +20,8 @@ export default function EmailTable({ rows }: EmailTableProps) {
           <tr>
             <th className="px-3 py-2 font-semibold">Filename</th>
             <th className="px-3 py-2 font-semibold">Title</th>
+            <th className="px-3 py-2 font-semibold">Category</th>
+            <th className="px-3 py-2 font-semibold">Sub-Category</th>
             <th className="px-3 py-2 font-semibold">Description</th>
             <th className="px-3 py-2 font-semibold">Sender</th>
             <th className="px-3 py-2 font-semibold">Sender Domain</th>
@@ -35,6 +37,8 @@ export default function EmailTable({ rows }: EmailTableProps) {
               <td className="px-3 py-2 max-w-[220px] break-words font-medium text-slate-800">
                 {row.subject || '—'}
               </td>
+              <td className="px-3 py-2 whitespace-nowrap text-slate-600">{row.category || '—'}</td>
+              <td className="px-3 py-2 whitespace-nowrap text-slate-600">{row.subcategory || '—'}</td>
               <td className="px-3 py-2 max-w-[320px] break-words text-slate-600">{row.description || '—'}</td>
               <td className="px-3 py-2 max-w-[200px] break-words text-slate-600">{row.sender || '—'}</td>
               <td className="px-3 py-2 whitespace-nowrap text-slate-600">{row.senderDomain || '—'}</td>

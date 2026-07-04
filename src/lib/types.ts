@@ -9,4 +9,6 @@ export interface EmailRow {
   attachments: string; // formatted string for CSV cell
   cc: string;
   messageId: string;
+  category: string;
+  subcategory: string;
 }

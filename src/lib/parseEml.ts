@@ -1,5 +1,6 @@
 import PostalMime from 'postal-mime';
 import type { EmailRow } from './types';
+import { classifyEmail } from './categories';
 
 const MAX_DESC = 255;
 
@@ -79,17 +80,26 @@ export async function parseEmlFile(file: File): Promise<EmailRow> {
 
   const description = truncate(body, MAX_DESC);
 
+  const senderDomain = extractDomain(parsed.from);
+  const { category, subcategory } = classifyEmail({
+    senderDomain,
+    subject: parsed.subject || '',
+    body: description,
+  });
+
   return {
     filename: file.name,
     subject: parsed.subject?.trim() || '',
     description,
     sender: formatAddress(parsed.from),
-    senderDomain: extractDomain(parsed.from),
+    senderDomain,
     receiver: formatAddressList(parsed.to),
     date: parsed.date || '',
     attachments: formatAttachments(parsed.attachments),
     cc: formatAddressList(parsed.cc),
     messageId: parsed.messageId || '',
+    category,
+    subcategory,
   };
 }
 

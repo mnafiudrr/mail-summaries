@@ -12,6 +12,8 @@ const CSV_COLUMNS: { key: keyof EmailRow; header: string }[] = [
   { key: 'attachments', header: 'Attachments' },
   { key: 'cc', header: 'CC' },
   { key: 'messageId', header: 'Message ID' },
+  { key: 'category', header: 'Category' },
+  { key: 'subcategory', header: 'Sub-Category' },
 ];
 
 export function buildCsv(rows: EmailRow[]): string {
